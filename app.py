@@ -1,17 +1,17 @@
 import os
 import sqlite3
-from flask import Flask, request, jsonify, json
+from flask import Flask, request, jsonify, json, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Zdravo"
+    return  render_template("index.html")
 
 @app.route("/primer-string")
 def  string():
-    return "Luka Smiljkovic je najaci"
+    return "Luka Smiljkovic najjaci"
 
 @app.route("/primer-broj")
 def  broj():
