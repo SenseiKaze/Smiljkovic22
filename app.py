@@ -11,13 +11,17 @@ def index():
     spisakRestorana = ["Pastica","Pica Tim","HasHub","Sahara"]
     return  render_template("index.html", naziv=nazivSpiska, spisak=spisakRestorana)
 
-@app.route("/primer-string")
-def  string():
-    return "Luka Smiljkovic najjaci"
+@app.route("/restorani")
+def  restorani():
+    nazivRestorana = "Spisak restorana"
+    spisakRestorani = ["Pastica","Pica Tim","HasHub","Sahara"]
+    return  render_template("restorani.html", naziv=nazivRestorana, spisak=spisakRestorani)
 
-@app.route("/primer-broj")
-def  broj():
-    return "265"
+@app.route("/restorani/1")
+def  meni():
+    nazivMeni = "Meni restorana"
+    spisakMeni = ["Pastica","Pica Tim","HasHub","Sahara"]
+    return  render_template("meno.html", naziv=nazivMeni, spisak=spisakMeni)
 
 @app.route("/primer-niz")
 def  niz():
