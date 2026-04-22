@@ -1,20 +1,13 @@
-    <!DOCTYPE hmtl>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" contet="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href=:static/style.css">
-    </head>
-    <body>
-        <h1>Zdravo budale<h1>
-        <h1>{{ naziv }}</h1>
-        <h1>{{ spisak }}</h1>
-        <ul>
-        {% for item in spisak %}
-            <li>{{item}}</li>
+{% extends "osnova.html" %}
+
+{% block title %}Početna - Ćafi's Spot{% endblock %}
+
+{% block content %}
+    <h2>{{ naslov }}</h2>
+    <ul>
+        {% for k in spisak %}
+            <li><a href="/restoran/{{ k }}">{{ restorani[k].naziv }}</a></li>
         {% endfor %}
-        </ul>
-    </body>
-    </html>
+    </ul>
+    <a href="/restorani" class="btn">Pogledaj sve</a>
+{% endblock %}

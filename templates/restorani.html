@@ -1,31 +1,13 @@
-    <!DOCTYPE hmtl>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" contet="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href= "style.css">
-    </head>
-    <body>
-        <header>            
-            <div class="container">
-                <img src="logo.jpg" alt="slika">
-                <h1>Brzi</h1>
-            </div>
-        </header>
-        <main>
-            <ul>
-                <h1>{{naziv}}</h1>
-            {% for item in spisak %}
-                <li>{{item}}</li>
-            {% endfor %}
-            </ul>
-        </main>
-        <footer>
-            <h4>Brzi doo, Leskovac</h4>
-            <h4>Copyright 2024</h4>
-            <h4>+381 64 123 456</h4>
-        </footer>
-    </body>
-    </html>
+    {% extends "osnova.html" %}
+
+{% block title %}Restorani - Ćafi's Spot{% endblock %}
+
+{% block content %}
+    <h2>{{ naslov }}</h2>
+    <ul>
+        {% for k in spisak %}
+            <li><a href="/restoran/{{ k }}">{{ restorani[k].naziv }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="/" class="btn">Nazad na početnu</a>
+{% endblock %}

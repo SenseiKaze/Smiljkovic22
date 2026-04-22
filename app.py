@@ -1,55 +1,76 @@
-import os
-import sqlite3
-from flask import Flask, request, jsonify, json, render_template
-from flask_cors import CORS
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
+restorani = {
+    "pastica": {
+        "naziv": "Pastica",
+        "meni": ["Pica", "Pasta", "Lazanje", "Sendvič"]
+    },
+    "picatim": {
+        "naziv": "Pica Tim",
+        "meni": ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]
+    },
+    "hashub": {
+        "naziv": "HasHub",
+        "meni": ["Burger", "Cheeseburger", "Pomfrit", "Pileći burger"]
+    },
+    "sahara": {
+        "naziv": "Sahara",
+        "meni": ["Ćevapi", "Pljeskavica", "Piletina", "Pomfrit"]
+    },
+    "abc": {
+        "naziv": "ABC",
+        "meni": ["Sendvič šunka", "Sendvič sir", "Hot Dog", "Kroasan"]
+    },
+    "lele": {
+        "naziv": "Lele",
+        "meni": ["Giros", "Pomfrit", "Pileći štapići", "Burger"]
+    },
+    "oskar": {
+        "naziv": "Oskar",
+        "meni": ["Palačinke", "Sladoled", "Vafli", "Krofne"]
+    },
+    "capcap": {
+        "naziv": "Cap Cap",
+        "meni": ["Espresso", "Cappuccino", "Topla čokolada", "Limunada"]
+    },
+    "promenada": {
+        "naziv": "Promenada",
+        "meni": ["Piletina", "Pomfrit", "Burger", "Sendvič"]
+    }
+}
+
 @app.route("/")
 def index():
-    nazivSpiska = "Spisak restorana"
-    spisakRestorana = ["Pastica","Pica Tim","HasHub","Sahara"]
-    return  render_template("index.html", naziv=nazivSpiska, spisak=spisakRestorana)
+    return render_template("index.html", 
+                         naslov="Spisak restorana", 
+                         spisak=list(restorani.keys()), 
+                         restorani=restorani)
 
 @app.route("/restorani")
-def  restorani():
-    nazivRestorana = "Spisak restorana"
-    spisakRestorani = ["Pastica","Pica Tim","HasHub","Sahara"]
-    return  render_template("restorani.html", naziv=nazivRestorana, spisak=spisakRestorani)
+def svi_restorani():
+    return render_template("restorani.html", 
+                         naslov="Svi restorani", 
+                         spisak=list(restorani.keys()), 
+                         restorani=restorani)
 
-@app.route("/restorani/1")
-def  meni():
-    nazivMeni = "Meni restorana"
-    spisakMeni = ["Pastica","Pica Tim","HasHub","Sahara"]
-    return  render_template("meno.html", naziv=nazivMeni, spisak=spisakMeni)
+@app.route("/restoran/<kljuc>")
+def meni_restorana(kljuc):
+    if kljuc in restorani:
+        r = restorani[kljuc]
+        return render_template("meni.html", 
+                             naslov=r["naziv"], 
+                             meni=r["meni"])
+    return "Restoran nije pronađen", 404
 
 @app.route("/primer-niz")
-def  niz():
-    nekiNiz = [1,2,3,4,5]
-    return nekiNiz
+def niz():
+    return jsonify([1, 2, 3, 4, 5])
 
 @app.route("/primer-json")
-def  primerJson():
-    data = {"message":"This is a JSON response","status":"success"}
-    return jsonify(data)
+def primer_json():
+    return jsonify({"poruka": "Ovo je JSON", "status": "ok"})
 
-@app.route("/primer-html")
-def  primerHTML():
-    data = """<!DOCTYPE hmtl>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" contet="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href=:static/style.css">
-    </head>
-    <body>
-        <h1>Zdravo budale<h1>
-    </body>
-    </html>"""
-    return data
-
-  
-if __name__== "__main__":
-    app.run()                                          
+if __name__ == "__main__":
+    app.run(debug=True)
