@@ -43,10 +43,10 @@ restorani = {
 
 @app.route("/")
 def index():
+    restorani= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]
     return render_template("index.html", 
                          naslov="Spisak restorana", 
-                         spisak=list(restorani.keys()), 
-                         restorani=restorani)
+                         spisak=restorani)
 
 @app.route("/restorani")
 def svi_restorani():
@@ -55,14 +55,13 @@ def svi_restorani():
                          spisak=list(restorani.keys()), 
                          restorani=restorani)
 
-@app.route("/restoran/<kljuc>")
-def meni_restorana(kljuc):
-    if kljuc in restorani:
-        r = restorani[kljuc]
-        return render_template("meni.html", 
-                             naslov=r["naziv"], 
-                             meni=r["meni"])
-    return "Restoran nije pronađen", 404
+@app.route("/restoran/1")
+def meni_restorana():   
+    meni= ["Pastica", "Pica Tim", "HasHub", "Sahara", "ABC", "Lele", "Oskar", "Cap Cap", "Promenada"]    
+    return render_template("meni.html", 
+                            naslov="Pastica", 
+                            meni=meni)
+   
 
 @app.route("/primer-niz")
 def niz():
