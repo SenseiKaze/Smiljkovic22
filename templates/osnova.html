@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ćafi's Spot{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="container sredina">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        <h1>Ćafi's Spot</h1>
+        <h3>Gladni? Mi stižemo za 30 minuta!</h3>
+    </div>
+</header>
+
+<main>
+    <div class="container sredina">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+<footer>
+    <div class="container sredina">
+        <h4>📍 Ćafi's Spot - Dostava hrane</h4>
+        <p>Bulevar Oslobođenja 45, Leskovac</p>
+        <p>📞 060 123 45 67 | 060 765 43 21</p>
+        <p>✉️ dostava@cafispot.rs</p>
+        <p>🕒 Pon - Ned: 09:00 - 00:00</p>
+        <p>🚚 Besplatna dostava za porudžbine preko 1500 RSD</p>
+        <p>&copy; 2026 Ćafi's Spot - Sva prava zadržana</p>
+    </div>
+</footer>
+
+</body>
+</html>
