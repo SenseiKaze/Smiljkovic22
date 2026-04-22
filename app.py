@@ -43,7 +43,7 @@ restorani = {
 
 @app.route("/")
 def index():
-    restorani= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]
+    restorani= ["Pastica", "Pica Tim", "HasHub", "Sahara", "ABC", "Lele", "Oskar", "Cap Cap", "Promenada"]
     return render_template("index.html", 
                          naslov="Spisak restorana", 
                          spisak=restorani)
@@ -57,7 +57,7 @@ def svi_restorani():
 
 @app.route("/restoran/1")
 def meni_restorana():   
-    meni= ["Pastica", "Pica Tim", "HasHub", "Sahara", "ABC", "Lele", "Oskar", "Cap Cap", "Promenada"]    
+    meni= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]    
     return render_template("meni.html", 
                             naslov="Pastica", 
                             meni=meni)
