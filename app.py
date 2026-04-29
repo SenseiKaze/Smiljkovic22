@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-
+import sqlite3
 app = Flask(__name__)
 
 restorani = {
@@ -41,9 +41,16 @@ restorani = {
     }
 }
 
+
 @app.route("/")
 def index():
-    restorani= ["Pastica", "Pica Tim", "HasHub", "Sahara", "ABC", "Lele", "Oskar", "Cap Cap", "Promenada"]
+    #restorani= ["Pastica", "Pica Tim", "HasHub", "Sahara", "ABC", "Lele", "Oskar", "Cap Cap", "Promenada"]
+    con = sqlite3.connect('dostavaHrane.db')
+
+    cur = con.cursor()
+    cur.execute("SELECT naziv FROM restorani LIMIT 10")
+
+    restorani = cur.fetchall()
     return render_template("index.html", 
                          naslov="Spisak restorana", 
                          spisak=restorani)
