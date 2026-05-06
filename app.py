@@ -48,23 +48,25 @@ def index():
     con = sqlite3.connect('dostavaHrane.db')
 
     cur = con.cursor()
-    cur.execute("SELECT naziv FROM restorani LIMIT 10")
+    cur.execute("SELECT id, naziv FROM restorani LIMIT 10")
 
     restorani = cur.fetchall()
     return render_template("index.html", 
                          naslov="Spisak restorana", 
                          spisak=restorani)
 
-@app.route("/restorani")
-def svi_restorani():
-    return render_template("restorani.html", 
-                         naslov="Svi restorani", 
-                         spisak=list(restorani.keys()), 
-                         restorani=restorani)
 
-@app.route("/restoran/1")
-def meni_restorana():   
-    meni= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]    
+
+@app.route("/restoran/<id_rest>")
+def meni_restorana(id_rest):   
+    #meni= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]   
+    con = sqlite3.connect('dostavaHrane.db')
+
+    cur = con.cursor()
+    query = f"SELECT naziv FROM meni where id_restorana == {id_rest}"
+    cur.execute(query)
+
+    meni = cur.fetchall() 
     return render_template("meni.html", 
                             naslov="Pastica", 
                             meni=meni)

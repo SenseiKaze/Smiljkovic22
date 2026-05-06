@@ -7,7 +7,7 @@
     <h2>{{ naslov }}</h2>
     <ul>
         {% for k in spisak %}
-            <li><a href="/restoran/{{ k }}">{{ k[0] }}</a></li>
+            <li><a href="/restoran/{{ k[0] }}">{{ k[1] }}</a></li>
         {% endfor %}
     </ul>
     <a href="/restorani" class="btn">Pogledaj sve</a>
