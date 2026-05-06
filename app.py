@@ -61,14 +61,15 @@ def index():
 def meni_restorana(id_rest):   
     #meni= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]   
     con = sqlite3.connect('dostavaHrane.db')
-
     cur = con.cursor()
     query = f"SELECT naziv FROM meni where id_restorana == {id_rest}"
     cur.execute(query)
-
     meni = cur.fetchall() 
+    query = f"SELECT naziv FROM restoran where id == {id_rest}"
+    cur.execute(query)
+    naslov = cur.fetchall() 
     return render_template("meni.html", 
-                            naslov="Pastica", 
+                            naslov=naslov, 
                             meni=meni)
    
 
