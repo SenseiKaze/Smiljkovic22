@@ -65,7 +65,7 @@ def meni_restorana(id_rest):
     query = f"SELECT naziv FROM meni where id_restorana == {id_rest}"
     cur.execute(query)
     meni = cur.fetchall() 
-    query = f"SELECT naziv FROM restoran where id == {id_rest}"
+    query = f"SELECT naziv FROM restorani where id == {id_rest}"
     cur.execute(query)
     naslov = cur.fetchall() 
     return render_template("meni.html", 
