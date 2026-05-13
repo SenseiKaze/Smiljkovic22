@@ -62,7 +62,7 @@ def meni_restorana(id_rest):
     #meni= ["Margarita", "Capricciosa", "Vesuvio", "Piletina"]   
     con = sqlite3.connect('dostavaHrane.db')
     cur = con.cursor()
-    query = f"SELECT naziv FROM meni where id_restorana == {id_rest}"
+    query = f"SELECT naziv,opis,cena FROM meni where id_restorana == {id_rest}"
     cur.execute(query)
     meni = cur.fetchall() 
     query = f"SELECT naziv FROM restorani where id == {id_rest}"

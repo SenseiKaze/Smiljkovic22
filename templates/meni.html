@@ -7,7 +7,9 @@
     <h3>Meni</h3>
     <ul>
         {% for jelo in meni %}
-            <li>{{ jelo[0] }}</li>
+            <li><h3>{{ jelo[0] }}</h3>
+            <h4>{{ jelo[1] }}</h4>
+            <h4>{{ jelo[2] }}</h4></li>
         {% endfor %}
     </ul>
     <a href="/" class="btn">Početna</a>
